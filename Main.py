@@ -1,5 +1,6 @@
 try:
 	import os
+	import requests
 	import termcolor
 	import pyttsx3 as p
 	import random as r
@@ -23,6 +24,8 @@ pause_rate = float(0.25)
 voice_engine = p.init()
 voice_engine.setProperty('rate', 125)
 voice_engine.setProperty('volume', 0.35)
+
+user_location = str("")
 
 response = str("")
 last_response = str("")
@@ -54,6 +57,9 @@ create_password_inquiries = ["Can you create a password for me?", "can you creat
 password_inquiry_responses = ["Sure thing! Let's get started.", "Not a problem! Let's get started!", "Easy peasy!", "Let's go!", "Okay!"]
 password = str("")
 pass_inquired_flag = int(0)
+
+weather_inquiries = ["What's the weather like outside?", "what's the weather like outside?", "Whats the weather like outside?", "whats the weather like outside?", "Whats the weather like outside", "whats the weather like outside", "What's the weather like outside?", "Fetch me the weather report for today", "fetch me the weather report for today", "fetch me the weather report for today please", "what's the weather for today?", "What's the weather for today?", "What's the weather like today?", "whats the weather like today?"]
+weather_inquired_flag = int(0)
 
 trainer.train(["Hi", "Hello"])
 trainer.train(["Hey", "Howdy"])
@@ -156,6 +162,24 @@ def random_color_response(message):
 	else:
 		prGreen(">> " + my_name + ": " + message)
 
+def weather_forecast(city):
+	url = 'https://wttr.in/{}'.format(city)
+
+	try:
+		weather_forecast_data = requests.get(url)
+		weather_forecast_content = weather_forecast_data.text
+
+		response = "Here's what I found online for the local weather forecast in " + city + "."
+		
+	except:
+		response = "I'm sorry, but an error occurred trying to fetch the weather data. Please check that all required modules and libraries are installed, and you are connected to a WiFi network."
+
+	random_color_response(response)
+
+	voice_engine.say(response)
+	voice_engine.runAndWait()
+
+	print(weather_forecast_content)
 try:
 	os.system("CLS")
 except:
@@ -217,11 +241,15 @@ while True:
 		else:
 			time_inquired_flag = 0
 			pass_inquired_flag = 0
+			weather_inquired_flag = 0
+			user_location = ""
 
 			if query in time_inquiries:
 				time_inquired_flag = 1
 			if query in create_password_inquiries:
 				pass_inquired_flag = 1
+			if query in weather_inquiries:
+				weather_inquired_flag = 1
 
 			if time_inquired_flag != 0:
 				response = "The current time is " + str(datetime.now())
@@ -242,7 +270,20 @@ while True:
 				
 				response = "Your password is " + password
 
-				random_color_response(response)				
+				random_color_response(response)	
+			elif weather_inquired_flag != 0:
+				response = "May I ask what city you reside in?"
+				
+				random_color_response(response)
+
+				voice_engine.say(response)
+				voice_engine.runAndWait()
+				
+				user_location = input(">> Enter your city here: ")
+				
+				weather_forecast(user_location)
+				
+				print("")
 			else:
 				response = str(model.get_response(query))
 				if response == last_response:
