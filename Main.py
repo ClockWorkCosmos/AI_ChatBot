@@ -238,7 +238,20 @@ while True:
 				if query[x] in extreme_profanities_list:
 					extreme_profanities_flag = 1
 		query = ' '.join(query)
+		
+		if extreme_profanities_flag != 0:
+			response = r.choice(extreme_profanities_filter)
+			
+			random_color_response(response)
+					talk(response)
 
+					print(" ")
+					
+					for x in range(0,300):
+						prRed(">> TIMEOUT: " + str(int(300 - x)))
+						t.sleep(1)
+		profanities_flag = 0
+			
 		if profanities_flag != 0:
 				if extreme_profanities_flag != 0:
 					response = r.choice(extreme_profanities_filter)
