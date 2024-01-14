@@ -27,6 +27,8 @@ voice_engine.setProperty('volume', 0.35)
 
 user_location = str("")
 
+NASA_api_key = str("M3tTCCbZljlTVZqeIRFmS6lbEuvUjVvb5NFf25bP")
+
 response = str("")
 last_response = str("")
 
@@ -50,6 +52,8 @@ extreme_profanities_list = ["Nigga", "nigga", "Nigger", "nigger", "Faggot", "fag
 extreme_profanities_filter = ["I'm sorry, but such hate speech will not be tolerated, you are now in usage timeout.", "Stop it, get some help...you are now in usage timeout.", "I think someone needs a usage timeout to think about what they've done."]
 extreme_profanities_flag = int(0)
 
+view_space_pics = int(0)
+
 time_inquiries = ["What time is it?", "what time is it?", "What time is it", "what time is it", "what is the time?", "What is the time?", "what is the time", "What is the time", "What is the current time?", "what is the current time?", "What is the current time", "what is the current time", "Time", "time", "Time?", "time", "Do you have the time?", "do you have the time?", "Do you have the time", "do you have the time", "Do you know the time?", "do you know the time?", "Do you know the time", "do you know the time"]
 time_inquired_flag = int(0)
 
@@ -60,6 +64,9 @@ pass_inquired_flag = int(0)
 
 weather_inquiries = ["What's the weather like outside?", "what's the weather like outside?", "Whats the weather like outside?", "whats the weather like outside?", "Whats the weather like outside", "whats the weather like outside", "What's the weather like outside?", "Fetch me the weather report for today", "fetch me the weather report for today", "fetch me the weather report for today please", "what's the weather for today?", "What's the weather for today?", "What's the weather like today?", "whats the weather like today?"]
 weather_inquired_flag = int(0)
+
+timer_inquiries = ["Set a timer", "Can you set a timer for me?", "Set a timer for me"]
+time_set_flag = int(0)
 
 trainer.train(["Hi", "Hello"])
 trainer.train(["Hey", "Howdy"])
@@ -162,6 +169,10 @@ def random_color_response(message):
 	else:
 		prGreen(">> " + my_name + ": " + message)
 
+def talk(say_this):
+	voice_engine.say(say_this)
+	voice_engine.runAndWait()
+
 def weather_forecast(city):
 	url = 'https://wttr.in/{}'.format(city)
 
@@ -176,14 +187,15 @@ def weather_forecast(city):
 
 	random_color_response(response)
 
-	voice_engine.say(response)
-	voice_engine.runAndWait()
+	talk(response)
 
 	print(weather_forecast_content)
 try:
 	os.system("CLS")
 except:
 	t.sleep(0.001)
+
+view_space_pics = 0
 
 while True:
 	profanities_flag = 0
@@ -201,9 +213,7 @@ while True:
 					break
 
 		random_color_response(response)
-
-		voice_engine.say(response)
-		voice_engine.runAndWait()
+		talk(response)
 
 		t.sleep(1)
 		break
@@ -222,9 +232,7 @@ while True:
 					response = r.choice(extreme_profanities_filter)
 					
 					random_color_response(response)
-
-					voice_engine.say(response)
-					voice_engine.runAndWait()
+					talk(response)
 
 					print(" ")
 					
@@ -235,17 +243,44 @@ while True:
 					response = r.choice(profanities_filter)
 					
 					random_color_response(response)
-					
-					voice_engine.say(response)
-					voice_engine.runAndWait()
+					talk(response)
 		else:
 			time_inquired_flag = 0
 			pass_inquired_flag = 0
 			weather_inquired_flag = 0
+			timer_set_flag = 0
 			user_location = ""
+
+			if view_space_pics != 1:
+				response = "Would you like to hear about NASA's photo of the day?"
+
+				random_color_response(response)
+				talk(response)
+				
+				if int(input(">> Yes (1) or No (2): ")) == 1:
+					response = "Okay! One minute please."
+
+					random_color_response(response)
+					talk(response)
+					
+					url = "https://api.nasa.gov/planetary/apod?api_key=" + NASA_api_key
+					url_response = requests.get(url)
+						
+					print("")
+					print(url_response.json())
+				else:
+					response = "Suit yourself!"
+
+					random_color_response(response)
+					talk(response)
+
+				view_space_pics = 1
+				print("")
 
 			if query in time_inquiries:
 				time_inquired_flag = 1
+			if query in timer_inquiries:
+				timer_set_flag = 1
 			if query in create_password_inquiries:
 				pass_inquired_flag = 1
 			if query in weather_inquiries:
@@ -255,9 +290,7 @@ while True:
 				response = "The current time is " + str(datetime.now())
 				
 				random_color_response(response)
-				
-				voice_engine.say(response)
-				voice_engine.runAndWait()
+				talk(response)
 			elif pass_inquired_flag != 0:
 				password = ""
 
@@ -271,20 +304,52 @@ while True:
 				response = "Your password is " + password
 
 				random_color_response(response)	
+			elif timer_set_flag != 0:
+				response = "Okay! For how long?"
+
+				random_color_response(response)
+				talk(response)
+
+				timer_set_for = int(input(">> Seconds: "))
+				
+				response = "Timer set for " + timer_set_for + " seconds."
+
+				random_color_response(response)
+				talk(response)
+
+				for x in range(0, timer_set_for):
+					response = "T-" + str(timer_set_for) - str(x)
+					
+					random_color_response(response)
+					
+					t.sleep(1)
+					
+					if x < 4:
+						response = "T-" + str(timer_set_for) - str(x)
+					
+						random_color_response(response)
+						talk(response)
+
+						t.sleep(1)
+
+				response = "End of timer."
+					
+				random_color_response(response)
+				talk(response)
+
+				print("")
 			elif weather_inquired_flag != 0:
 				response = "May I ask what city you reside in?"
 				
 				random_color_response(response)
-
-				voice_engine.say(response)
-				voice_engine.runAndWait()
+				talk(response)
 				
 				user_location = input(">> Enter your city here: ")
 				
 				weather_forecast(user_location)
 				
 				print("")
-			else:
+			elif view_space_pics != 0:
 				response = str(model.get_response(query))
 				if response == last_response:
 					while response == last_response:
@@ -293,10 +358,8 @@ while True:
 							break
 
 				random_color_response(response)
-				
-				voice_engine.say(response)
-				voice_engine.runAndWait()
-				last_response = response
+				talk(response)
 
+				last_response = response
 		t.sleep(pause_rate)
 exit()
