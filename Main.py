@@ -21,6 +21,8 @@ except:
 
 pause_rate = float(0.25)
 
+enable_speech = True
+
 voice_engine = p.init()
 voice_engine.setProperty('rate', 125)
 voice_engine.setProperty('volume', 0.35)
@@ -65,7 +67,7 @@ pass_inquired_flag = int(0)
 weather_inquiries = ["What's the weather like outside?", "what's the weather like outside?", "Whats the weather like outside?", "whats the weather like outside?", "Whats the weather like outside", "whats the weather like outside", "What's the weather like outside?", "Fetch me the weather report for today", "fetch me the weather report for today", "fetch me the weather report for today please", "what's the weather for today?", "What's the weather for today?", "What's the weather like today?", "whats the weather like today?"]
 weather_inquired_flag = int(0)
 
-timer_inquiries = ["Set a timer", "Can you set a timer for me?", "Set a timer for me"]
+timer_inquiries = ["Set a timer", "set a timer", "Can you set a timer for me?", "Set a timer for me"]
 time_set_flag = int(0)
 
 trainer.train(["Hi", "Hello"])
@@ -170,8 +172,11 @@ def random_color_response(message):
 		prGreen(">> " + my_name + ": " + message)
 
 def talk(say_this):
-	voice_engine.say(say_this)
-	voice_engine.runAndWait()
+	if enable_speech == True:
+		voice_engine.say(say_this)
+		voice_engine.runAndWait()
+	else:
+		t.sleep(0.01)
 
 def weather_forecast(city):
 	url = 'https://wttr.in/{}'.format(city)
@@ -190,12 +195,19 @@ def weather_forecast(city):
 	talk(response)
 
 	print(weather_forecast_content)
+
 try:
 	os.system("CLS")
 except:
 	t.sleep(0.001)
 
 view_space_pics = 0
+
+print("It is recommended for GRUB / Lite Linux users to disable speech")
+if int(input(">> Disable speech? Yes (1) / No (2): ")) == 1:
+	enable_speech = False
+else:
+	enable_speech = True
 
 while True:
 	profanities_flag = 0
@@ -263,11 +275,17 @@ while True:
 					random_color_response(response)
 					talk(response)
 					
-					url = "https://api.nasa.gov/planetary/apod?api_key=" + NASA_api_key
-					url_response = requests.get(url)
+					try:
+						url = "https://api.nasa.gov/planetary/apod?api_key=" + NASA_api_key
+						url_response = requests.get(url)
 						
-					print("")
-					print(url_response.json())
+						print("")
+						print(url_response.json())
+					except:
+						response = "An error occurred fetching the information"
+						
+						random_color_response(response)
+						talk(response)
 				else:
 					response = "Suit yourself!"
 
