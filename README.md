@@ -7,18 +7,24 @@ Additional features include the ability to answer simple current time or math in
 
 Features List:
   * AI generated text & voice responses
-  * Fetch Current Date & Time #Try asking 'what's the weather like outside?'
-  * Fetch local weather forecast
-  * Answer simple math questions involving addition, subtraction, multiplication, and / or division
+  * Offers to view NASA's photo of the day
+  * Fetch Current Date & Time 
+  * Fetch local weather forecast #Try asking 'what's the weather like outside?'
+  * Answer simple math questions involving addition, subtraction, multiplication, and / or division #Try asking 'What is two times seven?'
+  * Can generate random passwords *try asking 'create a password'
+  * Can set a timer for the user
  *  Built-In profanities filter (with extreme profanities punishable by a usage timeout)
  *  Built-In filter for repetitive responses
  *  Knowledgable of Basic Color Theorem
  *  Peak Ancient Sumerian humor #Ask if they know any jokes ;)
  *  Colorful text responses
+ *  Simple object colors
+ *  Simple animal sounds
+ *  Simple Chinese and German phrases #Try asking 'What is cat in Chinese?'
   
 Required Modules / Library:
  * Os  #Used to clear the terminal output after load list trainers
- * Requests #To fetch weather data from the web
+ * Requests #To fetch data from the web
  * Termcolor  #Differiantates chatbot replies from user replies with color for its text
  * Pyttsx3  #Converts text responses to speech
 *  Random  #Used for the random selection of some responses
