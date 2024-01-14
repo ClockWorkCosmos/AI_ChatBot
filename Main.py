@@ -344,8 +344,7 @@ while True:
 					
 					if timer_set_for - x < 4:
 						response = "T-" + str(timer_set_for - x)
-					
-						random_color_response(response)
+						
 						talk(response)
 
 						t.sleep(1)
