@@ -269,7 +269,8 @@ while True:
 				random_color_response(response)
 				talk(response)
 				
-				if input(">> Yes (1) or No (2): ") == "1":
+				space_selection = str(input(">> Yes (1) or No (2): "))
+				if space_selection == "1":
 					response = "Okay! One minute please."
 
 					random_color_response(response)
@@ -286,7 +287,7 @@ while True:
 						
 						random_color_response(response)
 						talk(response)
-				elif input(">> Yes (1) or No (2): ") == "2":
+				elif space_selection == "2":
 					response = "Suit yourself!"
 
 					random_color_response(response)
