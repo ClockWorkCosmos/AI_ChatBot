@@ -7,13 +7,13 @@ Additional features include the ability to answer simple current time or math in
 
 Features List:
   * AI generated text & voice responses
-  * Fetch Current Date & Time
+  * Fetch Current Date & Time #Try asking 'what's the weather like outside?'
   * Fetch local weather forecast
   * Answer simple math questions involving addition, subtraction, multiplication, and / or division
  *  Built-In profanities filter (with extreme profanities punishable by a usage timeout)
  *  Built-In filter for repetitive responses
  *  Knowledgable of Basic Color Theorem
- *  Peak Ancient Sumerian humor #ask if they know any jokes ;)
+ *  Peak Ancient Sumerian humor #Ask if they know any jokes ;)
  *  Colorful text responses
   
 Required Modules / Library:
