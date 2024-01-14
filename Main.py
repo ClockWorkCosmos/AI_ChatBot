@@ -197,7 +197,7 @@ def weather_forecast(city):
 	print(weather_forecast_content)
 
 print("It is recommended for GRUB / Lite Linux users to disable speech")
-if int(input(">> Disable speech? Yes (1) / No (2): ")) == 1:
+if input(">> Disable speech? Yes (1) / No (2): ") == "1":
 	enable_speech = False
 else:
 	enable_speech = True
