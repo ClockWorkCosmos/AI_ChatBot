@@ -1,5 +1,7 @@
 # Artificially Intelligent Chatbot
 
+! NOTE : MAY BE INCOMPATIBLE WITH NEWER VERSIONS OF PYTHON !
+
 An artificially intelligent 'chatbot' written in Python using the Chatterbot module / library. This CLI based chatbot provides entertaining replies with text to speech responses powered by PYTTSX3.
 Additional features include the ability to answer simple current time or math inquiries, as well as a built-in profanities filter and user time-out on extreme profanities such as racial slurs.
 
