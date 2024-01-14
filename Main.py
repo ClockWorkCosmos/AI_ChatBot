@@ -312,20 +312,20 @@ while True:
 
 				timer_set_for = int(input(">> Seconds: "))
 				
-				response = "Timer set for " + timer_set_for + " seconds."
+				response = "Timer set for " + str(timer_set_for) + " seconds."
 
 				random_color_response(response)
 				talk(response)
 
 				for x in range(0, timer_set_for):
-					response = "T-" + str(timer_set_for) - str(x)
+					response = "T-" + str(timer_set_for - x)
 					
 					random_color_response(response)
 					
 					t.sleep(1)
 					
-					if x < 4:
-						response = "T-" + str(timer_set_for) - str(x)
+					if timer_set_for - x < 4:
+						response = "T-" + str(timer_set_for - x)
 					
 						random_color_response(response)
 						talk(response)
