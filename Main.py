@@ -196,18 +196,18 @@ def weather_forecast(city):
 
 	print(weather_forecast_content)
 
+print("It is recommended for GRUB / Lite Linux users to disable speech")
+if int(input(">> Disable speech? Yes (1) / No (2): ")) == 1:
+	enable_speech = False
+else:
+	enable_speech = True
+
 try:
 	os.system("CLS")
 except:
 	t.sleep(0.001)
 
 view_space_pics = 0
-
-print("It is recommended for GRUB / Lite Linux users to disable speech")
-if int(input(">> Disable speech? Yes (1) / No (2): ")) == 1:
-	enable_speech = False
-else:
-	enable_speech = True
 
 while True:
 	profanities_flag = 0
@@ -269,7 +269,7 @@ while True:
 				random_color_response(response)
 				talk(response)
 				
-				if int(input(">> Yes (1) or No (2): ")) == 1:
+				if input(">> Yes (1) or No (2): ")) == "1":
 					response = "Okay! One minute please."
 
 					random_color_response(response)
@@ -286,7 +286,7 @@ while True:
 						
 						random_color_response(response)
 						talk(response)
-				else:
+				else :
 					response = "Suit yourself!"
 
 					random_color_response(response)
