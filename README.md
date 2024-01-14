@@ -6,16 +6,19 @@ An artificially intelligent 'chatbot' written in Python using the Chatterbot mod
 Additional features include the ability to answer simple current time or math inquiries, as well as a built-in profanities filter and user time-out on extreme profanities such as racial slurs.
 
 Features List:
-  * AI Generated Text & Voice Responses
+  * AI generated text & voice responses
   * Fetch Current Date & Time
-  * Answer Simple Math Questions Involving Addition, Subtraction, Multiplication, and / or Division
- *  Built-In Profanities Filter (with extreme profanities punishable by a usage timeout)
- *  Built-In Filter for Repetitive Responses
+  * Fetch local weather forecast
+  * Answer simple math questions involving addition, subtraction, multiplication, and / or division
+ *  Built-In profanities filter (with extreme profanities punishable by a usage timeout)
+ *  Built-In filter for repetitive responses
  *  Knowledgable of Basic Color Theorem
- *  Peak Ancient Sumerian Humor #ask if they know any jokes ;)
+ *  Peak Ancient Sumerian humor #ask if they know any jokes ;)
+ *  Colorful text responses
   
 Required Modules / Library:
  * Os  #Used to clear the terminal output after load list trainers
+ * Requests #To fetch weather data from the web
  * Termcolor  #Differiantates chatbot replies from user replies with color for its text
  * Pyttsx3  #Converts text responses to speech
 *  Random  #Used for the random selection of some responses
