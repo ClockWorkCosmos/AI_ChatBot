@@ -1,8 +1,6 @@
 try:
 	import os
-	import sys
 	import termcolor
-	import math as m
 	import pyttsx3 as p
 	import random as r
 	import datetime
@@ -62,10 +60,17 @@ trainer.train(["Bye-bye", "See you later"])
 trainer.train(["How are you?", "I am good.", "That is good to hear.", "Thank you", "You are welcome."])
 trainer.train(["How's it going?", "Doing just fine, how about you?", "That is good to hear.", "Thank you", "You are welcome."])
 
+
 def prRed(skk): 
-	print("\033[91m {}\033[00m" .format(skk))
+	print("\033[91m {}\033[00m" .format(skk)) 
 def prGreen(skk): 
 	print("\033[92m {}\033[00m" .format(skk))
+def prYellow(skk): 
+	print("\033[93m {}\033[00m" .format(skk))
+def prPurple(skk): 
+	print("\033[95m {}\033[00m" .format(skk))
+def prCyan(skk): 
+	print("\033[96m {}\033[00m" .format(skk))
 
 try:
 	os.system("CLS")
@@ -86,8 +91,17 @@ while True:
 				response = str(model.get_response(query))
 				if response != last_response:
 					break
+		if r.randint(1,4) == 1:
+			prGreen(">> " + my_name + ": " + response)
+		elif r.randint(1,4) == 2:
+			prYellow(">> " + my_name + ": " + response)
+		elif r.randint(1,4) == 3:
+			prCyan(">> " + my_name + ": " + response)
+		elif r.randint(1,4) == 4:
+			prPurple(">> " + my_name + ": " + response)
+		else:
+			prGreen(">> " + my_name + ": " + response)
 
-		prGreen(">> " + my_name + ": " + response)
 		voice_engine.say(response)
 		voice_engine.runAndWait()
 		t.sleep(1)
@@ -106,7 +120,17 @@ while True:
 		if profanities_flag != 0:
 				if extreme_profanities_flag != 0:
 					response = r.choice(extreme_profanities_filter)
-					prGreen(">> " + my_name + ": " + response)
+					if r.randint(1,4) == 1:
+						prGreen(">> " + my_name + ": " + response)
+					elif r.randint(1,4) == 2:
+						prYellow(">> " + my_name + ": " + response)
+					elif r.randint(1,4) == 3:
+						prCyan(">> " + my_name + ": " + response)
+					elif r.randint(1,4) == 4:
+						prPurple(">> " + my_name + ": " + response)
+					else:
+						prGreen(">> " + my_name + ": " + response)
+
 					voice_engine.say(response)
 					voice_engine.runAndWait()
 
@@ -116,7 +140,17 @@ while True:
 						t.sleep(1)
 				else:
 					response = r.choice(profanities_filter)
-					prGreen(">> " + my_name + ": " + response)
+					if r.randint(1,4) == 1:
+						prGreen(">> " + my_name + ": " + response)
+					elif r.randint(1,4) == 2:
+						prYellow(">> " + my_name + ": " + response)
+					elif r.randint(1,4) == 3:
+						prCyan(">> " + my_name + ": " + response)
+					elif r.randint(1,4) == 4:
+						prPurple(">> " + my_name + ": " + response)
+					else:
+						prGreen(">> " + my_name + ": " + response)
+					
 					voice_engine.say(response)
 					voice_engine.runAndWait()
 		else:
@@ -127,7 +161,17 @@ while True:
 
 			if time_inquired_flag != 0:
 				response = "The current time is " + str(datetime.now())
-				prGreen(">> " + my_name + ": " + response)
+				if r.randint(1,4) == 1:
+					prGreen(">> " + my_name + ": " + response)
+				elif r.randint(1,4) == 2:
+					prYellow(">> " + my_name + ": " + response)
+				elif r.randint(1,4) == 3:
+					prCyan(">> " + my_name + ": " + response)
+				elif r.randint(1,4) == 4:
+					prPurple(">> " + my_name + ": " + response)
+				else:
+					prGreen(">> " + my_name + ": " + response)
+				
 				voice_engine.say(response)
 				voice_engine.runAndWait()
 			else:
@@ -138,7 +182,17 @@ while True:
 						if response != last_response:
 							break
 
-				prGreen(">> " + my_name + ": " + response)
+				if r.randint(1,4) == 1:
+					prGreen(">> " + my_name + ": " + response)
+				elif r.randint(1,4) == 2:
+					prYellow(">> " + my_name + ": " + response)
+				elif r.randint(1,4) == 3:
+					prCyan(">> " + my_name + ": " + response)
+				elif r.randint(1,4) == 4:
+					prPurple(">> " + my_name + ": " + response)
+				else:
+					prGreen(">> " + my_name + ": " + response)
+				
 				voice_engine.say(response)
 				voice_engine.runAndWait()
 				last_response = response
