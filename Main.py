@@ -39,7 +39,7 @@ my_favorite_color = str("Green")
 my_favorite_animal = str("Lions")
 my_favorite_fruit = str("Bananas")
 
-model = ChatBot(my_name, preprocessors=['chatterbot.preprocessors.clean_whitespace'], logic_adapters=[{'import_path': 'chatterbot.logic.MathematicalEvaluation'}, {"import_path": "chatterbot.logic.BestMatch", "statement_comparison_function": chatterbot.comparisons.LevenshteinDistance, "response_selection_method": chatterbot.response_selection.get_most_frequent_response}], storage_adapter='chatterbot.storage.SQLStorageAdapter', database_uri='sqlite:///General_conversations_database.sqlite3')
+model = ChatBot(my_name, preprocessors=['chatterbot.preprocessors.clean_whitespace'], logic_adapters=[{'import_path': 'chatterbot.logic.MathematicalEvaluation'}, {"import_path": "chatterbot.logic.BestMatch", "statement_comparison_function": chatterbot.comparisons.LevenshteinDistance, "response_selection_method": chatterbot.response_selection.get_first_response}, {"import_path": "chatterbot.logic.BestMatch", "statement_comparison_function": chatterbot.comparisons.LevenshteinDistance, "response_selection_method": chatterbot.response_selection.get_most_frequent_response}], storage_adapter='chatterbot.storage.SQLStorageAdapter', database_uri='sqlite:///General_conversations_database.sqlite3')
 
 trainer = ListTrainer(model)
 corpus_trainer = chatterbot.trainers.ChatterBotCorpusTrainer
