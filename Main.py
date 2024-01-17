@@ -141,8 +141,8 @@ def play_rock_paper_scissors():
                         continue
 
                 cpu_choice = r.choice(choices)
-                random_color_response("CPU chooses " + cpu_choice)
-                talk("CPU chooses " + cpu_choice)
+                random_color_response("I throw " + cpu_choice + "!")
+                talk("I throw" + cpu_choice + "!")
 
                 if user_choice == cpu_choice:
                         random_color_response("It's a tie!")
