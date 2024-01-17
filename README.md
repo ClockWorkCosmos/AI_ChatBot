@@ -22,7 +22,7 @@ Features List:
  *  Simple animal sounds
  *  Simple Chinese and German phrases #Try asking 'What is cat in Chinese?'
   
-Required Modules / Library:
+Required Modules / Libraries:
  * Os  #Used to clear the terminal output after load list trainers
  * Requests #To fetch data from the web
  * Termcolor  #Differiantates chatbot replies from user replies with color for its text
